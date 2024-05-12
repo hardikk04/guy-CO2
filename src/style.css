@@ -1,0 +1,254 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+}
+
+/* Fonts */
+@font-face {
+  font-family: black;
+  src: url("/fonts/Montserrat-Black.ttf");
+}
+
+@font-face {
+  font-family: bold;
+  src: url("/fonts/Montserrat-Bold.ttf");
+}
+
+@font-face {
+  font-family: light;
+  src: url("/fonts/Montserrat-Light.ttf");
+}
+
+@font-face {
+  font-family: medium;
+  src: url("/fonts/Montserrat-Medium.ttf");
+}
+
+@font-face {
+  font-family: regular;
+  src: url("/fonts/Montserrat-Regular.ttf");
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.loader {
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  z-index: 99;
+  color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  padding-bottom: 4vw;
+  pointer-events: none;
+}
+
+.loader-cont {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.loader-cont > h1 {
+  font-size: 2.2vw;
+  font-family: bold;
+}
+
+.loader-cont > h3 {
+  font-size: 0.7vw;
+  font-family: light;
+  width: 21%;
+  text-align: center;
+  text-transform: uppercase;
+  margin-top: 5vw;
+}
+
+.svg {
+  position: relative;
+  height: 35vh;
+  width: 50%;
+  overflow: hidden;
+}
+
+.svg > video {
+  position: absolute;
+  transform: translateY(-10%);
+  height: 100%;
+  width: 100%;
+  /* object-fit: cover; */
+  scale: 2.5;
+}
+
+.main {
+  position: relative;
+  width: 100%;
+}
+
+.webgl {
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translateX(5%);
+  width: 100%;
+  height: 100%;
+  z-index: 9;
+}
+
+.page1 {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+}
+
+.page1-left {
+  position: relative;
+  height: 100%;
+  width: 42%;
+  padding: 0vw 6vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 10;
+}
+
+.page1-heading > h1 {
+  font-family: bold;
+  font-size: 2.3vw;
+}
+
+.interval {
+  position: relative;
+  margin-top: 12vw;
+}
+
+.main-circle {
+  position: absolute;
+  height: 1vh;
+  width: 1vh;
+  background-color: rgb(10, 150, 244);
+  border-radius: 50%;
+  margin: 0 0.2vw;
+}
+
+.interval-loader {
+  position: relative;
+  display: flex;
+  align-items: center;
+  transform-origin: top left;
+}
+
+.interval-circle {
+  position: relative;
+  height: 2vh;
+  width: 2vh;
+  border-radius: 50%;
+  border: 1px solid #000;
+  pointer-events: none;
+}
+
+.interval-line {
+  position: relative;
+  height: 1px;
+  width: 100%;
+  background-color: #000;
+}
+
+.years {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  font-family: light;
+  gap: 1.35vw;
+  margin-top: 0.4vw;
+}
+
+.years > div {
+  height: 5vh;
+  cursor: pointer;
+}
+
+.years h3 {
+  font-size: 0.9vw;
+  transform-origin: center bottom;
+  rotate: -90deg;
+  white-space: nowrap;
+}
+
+.switch {
+  position: relative;
+  display: flex;
+  font-family: light;
+  margin-top: 4vw;
+  gap: 2.5vw;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.switch h1:nth-child(odd) {
+  cursor: pointer;
+}
+
+.blue-bar {
+  position: absolute;
+  height: 2px;
+  width: 30%;
+  background-color: rgb(10, 150, 244);
+  left: 0;
+  bottom: -15%;
+  transform-origin: top left;
+}
+
+.page2 {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  padding: 4vw 6vw;
+  width: 50%;
+}
+
+.page2-left {
+  position: relative;
+  z-index: 10;
+}
+
+.page2-left > h1 {
+  font-family: bold;
+  font-size: 2.15vw;
+}
+
+.switch2 {
+  position: relative;
+  display: flex;
+  font-family: light;
+  margin-top: 4vw;
+  gap: 2.5vw;
+  width: fit-content;
+}
+
+.switch2 h1:nth-child(odd) {
+  cursor: pointer;
+}
+
+.blue-bar2 {
+  position: absolute;
+  height: 2px;
+  width: 30%;
+  background-color: rgb(10, 150, 244);
+  left: 0;
+  bottom: -15%;
+  transform-origin: top left;
+}
