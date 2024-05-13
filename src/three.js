@@ -276,6 +276,13 @@ const loaderAnimation = () => {
   tl.from(".interval-loader", {
     opacity: 0,
     scaleX: 0,
+    scrollTrigger: {
+      scroller: "body",
+      trigger: ".page1",
+      start: "top 40%",
+      end: "top 0%",
+      scrub: 1,
+    },
   });
 
   clutterAnimation(".y2024>h3");
@@ -295,6 +302,13 @@ const loaderAnimation = () => {
     stagger: {
       amount: 1.2,
     },
+    scrollTrigger: {
+      scroller: "body",
+      trigger: ".page1",
+      start: "top 30%",
+      end: "top -10%",
+      scrub: 1,
+    },
   });
 
   clutterAnimation(".heat");
@@ -306,9 +320,23 @@ const loaderAnimation = () => {
     stagger: {
       amount: 0.5,
     },
+    scrollTrigger: {
+      scroller: "body",
+      trigger: ".page1",
+      start: "top 30%",
+      end: "top -20%",
+      scrub: 1,
+    },
   });
   tl.from(".blue-bar", {
     transform: "scaleX(0)",
+    scrollTrigger: {
+      scroller: "body",
+      trigger: ".page1",
+      start: "top 30%",
+      end: "top -20%",
+      scrub: 1,
+    },
   });
 };
 loaderAnimation();
@@ -384,7 +412,7 @@ const switchHeatAndCO2 = () => {
     heatGlobeMaterial.uniforms.uTextures.value =
       loadedHeatTextures[globalIndex];
 
-    gsap.to(".blue-bar", {
+    gsap.to(".blue-bar,.blue-bar2", {
       left: 0,
       width: "30%",
     });
@@ -394,10 +422,11 @@ const switchHeatAndCO2 = () => {
   co2.addEventListener("click", () => {
     heatGlobeMaterial.uniforms.uTextures.value = loadedCO2Textures[globalIndex];
 
-    gsap.to(".blue-bar", {
+    gsap.to(".blue-bar,.blue-bar2", {
       left: "77%",
       width: "25%",
     });
+
     flag = "co2";
   });
 
@@ -406,7 +435,7 @@ const switchHeatAndCO2 = () => {
     heatGlobeMaterial.uniforms.uTextures.value =
       loadedHeatTextures[globalIndex];
 
-    gsap.to(".blue-bar2", {
+    gsap.to(".blue-bar2,.blue-bar", {
       left: 0,
       width: "30%",
     });
@@ -416,7 +445,7 @@ const switchHeatAndCO2 = () => {
   co22.addEventListener("click", () => {
     heatGlobeMaterial.uniforms.uTextures.value = loadedCO2Textures[globalIndex];
 
-    gsap.to(".blue-bar2", {
+    gsap.to(".blue-bar2,.blue-bar", {
       left: "77%",
       width: "25%",
     });
