@@ -162,103 +162,116 @@ const clutterAnimation = (element) => {
 };
 
 const loaderAnimation = () => {
-  clutterAnimation(".loader-cont>h1");
-  clutterAnimation(".loader-cont>h3");
+  clutterAnimation(".page0-cont>h1");
+  clutterAnimation(".page0-cont>h3");
   const tl = gsap.timeline();
-  tl.from(".loader-cont>h1>span", {
+  tl.from(".page0-cont>h1>span", {
     opacity: 0,
     scale: 0,
     y: 50,
     stagger: {
-      amount: 1.8,
+      amount: 1,
     },
   });
-  tl.from(".loader-cont>h3>span", {
+  tl.from(".page0-cont>h3>span", {
     opacity: 0,
     scale: 0,
     y: 30,
     stagger: {
-      amount: 1.8,
+      amount: 1,
     },
   });
 
-  tl.to(
-    ".loader-cont>h1>span",
-    {
-      opacity: 0,
-      scale: 0,
-      y: 50,
-      stagger: {
-        amount: -1.8,
-      },
+  tl.to(".page0-cont>h1>span", {
+    opacity: 0,
+    scale: 0,
+    y: 50,
+    stagger: {
+      amount: -1,
     },
-    "same"
-  );
-  tl.to(
-    ".loader-cont>h3>span",
-    {
-      opacity: 0,
-      scale: 0,
-      y: 30,
-      stagger: {
-        amount: -1.8,
-      },
+    scrollTrigger: {
+      scroller: "body",
+      trigger: ".page0",
+      start: "top 0%",
+      end: "top -50%",
+      scrub: 1,
     },
-    "same"
-  );
+  });
+  tl.to(".page0-cont>h3>span", {
+    opacity: 0,
+    scale: 0,
+    y: 30,
+    stagger: {
+      amount: -1,
+    },
+    scrollTrigger: {
+      scroller: "body",
+      trigger: ".page0",
+      start: "top 0%",
+      end: "top -50%",
+      scrub: 1,
+    },
+  });
 
   const video = document.querySelector("video");
   video.playbackRate = 1.4;
 
-  tl.to(".loader", {
-    delay: 1,
-    opacity: 0,
-  });
-
   // Page1 animations start
   clutterAnimation(".page1-heading>h1");
 
-  tl.from(
-    ".page1-heading>h1>span",
-    {
-      opacity: 0,
-      scale: 0,
-      y: 30,
-      stagger: {
-        amount: 1,
-      },
+  tl.from(".page1-heading>h1>span", {
+    opacity: 0,
+    scale: 0,
+    y: 30,
+    stagger: {
+      amount: 1,
     },
-    "a"
-  );
+    scrollTrigger: {
+      scroller: "body",
+      trigger: ".page1",
+      start: "top 50%",
+      end: "top 0%",
+      scrub: 1,
+    },
+  });
 
-  tl.from(
-    heatGlobe.position,
-    {
-      x: -2,
-      duration: 2,
+  tl.from(heatGlobe.position, {
+    x: 2,
+    duration: 2,
+    scrollTrigger: {
+      scroller: "body",
+      trigger: ".page1",
+      start: "top 50%",
+      end: "top 0%",
+      scrub: 1,
     },
-    "a"
-  );
+  });
 
-  tl.from(
-    heatGlobeGroup.rotation,
-    {
-      y: -Math.PI,
-      duration: 2,
+  tl.from(heatGlobeGroup.rotation, {
+    y: -Math.PI * 2,
+    duration: 2,
+    scrollTrigger: {
+      scroller: "body",
+      trigger: ".page1",
+      start: "top 50%",
+      end: "top 0%",
+      scrub: 1,
     },
-    "a"
-  );
+  });
 
-  tl.from(
-    heatGlobe.scale,
-    {
-      x: 0,
-      y: 0,
-      z: 0,
-      duration: 2,
+  tl.from(heatGlobe.scale, {
+    x: 0,
+    y: 0,
+    z: 0,
+    duration: 2,
+    scrollTrigger: {
+      scroller: "body",
+      trigger: ".page1",
+      start: "top 50%",
+      end: "top 0%",
+      scrub: 1,
     },
-    "a"
-  );
+  });
 
   tl.from(".interval-loader", {
     opacity: 0,

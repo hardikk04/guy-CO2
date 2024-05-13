@@ -40,8 +40,8 @@ html {
   display: inline-block;
 }
 
-.loader {
-  position: absolute;
+.page0 {
+  position: relative;
   height: 100vh;
   width: 100%;
   top: 0;
@@ -56,19 +56,19 @@ html {
   pointer-events: none;
 }
 
-.loader-cont {
+.page0-cont {
   position: relative;
   display: flex;
   align-items: center;
   flex-direction: column;
 }
 
-.loader-cont > h1 {
+.page0-cont > h1 {
   font-size: 2.2vw;
   font-family: bold;
 }
 
-.loader-cont > h3 {
+.page0-cont > h3 {
   font-size: 0.7vw;
   font-family: light;
   width: 21%;
@@ -82,6 +82,7 @@ html {
   height: 35vh;
   width: 50%;
   overflow: hidden;
+  background-color: #fff;
 }
 
 .svg > video {
@@ -89,7 +90,7 @@ html {
   transform: translateY(-10%);
   height: 100%;
   width: 100%;
-  /* object-fit: cover; */
+  object-fit: cover;
   scale: 2.5;
 }
 
@@ -217,12 +218,14 @@ html {
   height: 100vh;
   width: 100%;
   padding: 4vw 6vw;
-  width: 50%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .page2-left {
   position: relative;
   z-index: 10;
+  width: 43%;
 }
 
 .page2-left > h1 {
