@@ -78,6 +78,7 @@ const heatGlobeMaterial = new THREE.ShaderMaterial({
 });
 
 const heatGlobe = new THREE.Mesh(heatGlobeGeometry, heatGlobeMaterial);
+heatGlobe.scale.set(0.9, 0.9, 0.9);
 heatGlobeGroup.add(heatGlobe);
 
 /**
@@ -97,7 +98,7 @@ const camera = new THREE.PerspectiveCamera(
   100
 );
 camera.position.z = 5;
-camera.position.x = 2;
+// camera.position.x = -2;
 scene.add(camera);
 
 /**
@@ -124,8 +125,11 @@ renderer.setSize(sizes.width, sizes.height);
  * Controls
  */
 const controls = new OrbitControls(camera, canvas);
-controls.enableDamping = true;
 controls.enableZoom = false;
+controls.enablePan = false;
+controls.enableDamping = true;
+controls.minPolarAngle = 0.4 * Math.PI;
+controls.maxPolarAngle = 0.4 * Math.PI;
 
 /**
  * Clock
@@ -140,7 +144,6 @@ const tick = () => {
   const currentTime = Date.now();
   const deltaTime = currentTime - time;
   time = currentTime;
-  heatGlobe.rotation.y = time * 0.0002;
 
   renderer.render(scene, camera);
   controls.update();
@@ -213,9 +216,6 @@ const loaderAnimation = () => {
     },
   });
 
-  const video = document.querySelector("video");
-  video.playbackRate = 1.4;
-
   // Page1 animations start
   clutterAnimation(".page1-heading>h1");
 
@@ -236,24 +236,23 @@ const loaderAnimation = () => {
   });
 
   tl.from(heatGlobe.position, {
-    x: 2,
-    duration: 2,
+    y: -5,
+    x: -4,
     scrollTrigger: {
       scroller: "body",
       trigger: ".page1",
-      start: "top 50%",
-      end: "top 0%",
+      start: "top 70%",
+      end: "top 20%",
       scrub: 1,
     },
   });
 
   tl.from(heatGlobeGroup.rotation, {
-    y: -Math.PI * 2,
-    duration: 2,
+    y: -Math.PI,
     scrollTrigger: {
       scroller: "body",
       trigger: ".page1",
-      start: "top 50%",
+      start: "top 70%",
       end: "top 0%",
       scrub: 1,
     },
@@ -263,13 +262,15 @@ const loaderAnimation = () => {
     x: 0,
     y: 0,
     z: 0,
-    duration: 2,
     scrollTrigger: {
       scroller: "body",
       trigger: ".page1",
-      start: "top 50%",
-      end: "top 0%",
+      start: "top 70%",
+      end: "top 20%",
       scrub: 1,
+    },
+    onComplete: () => {
+      controls.autoRotate = true;
     },
   });
 
@@ -280,7 +281,7 @@ const loaderAnimation = () => {
       scroller: "body",
       trigger: ".page1",
       start: "top 40%",
-      end: "top 0%",
+      end: "top 20%",
       scrub: 1,
     },
   });
@@ -306,7 +307,7 @@ const loaderAnimation = () => {
       scroller: "body",
       trigger: ".page1",
       start: "top 30%",
-      end: "top -10%",
+      end: "top 10%",
       scrub: 1,
     },
   });
@@ -324,7 +325,7 @@ const loaderAnimation = () => {
       scroller: "body",
       trigger: ".page1",
       start: "top 30%",
-      end: "top -20%",
+      end: "top 0%",
       scrub: 1,
     },
   });
@@ -334,7 +335,7 @@ const loaderAnimation = () => {
       scroller: "body",
       trigger: ".page1",
       start: "top 30%",
-      end: "top -20%",
+      end: "top 0%",
       scrub: 1,
     },
   });
@@ -548,7 +549,7 @@ const canvasAnimation = () => {
       trigger: `.page2 canvas`,
       //   set start end according to preference
       start: `top top`,
-      end: `600% top`,
+      end: `top -290%`,
       scroller: `body`,
     },
     onUpdate: render,
@@ -561,7 +562,7 @@ const canvasAnimation = () => {
 
   function render() {
     scaleImage(images[imageSeq.frame], context);
-    if (imageSeq.frame === 39) {
+    if (imageSeq.frame === 20) {
       const tl = gsap.timeline();
       tl.to(".page2-line-point1", {
         scale: 0,
@@ -569,7 +570,7 @@ const canvasAnimation = () => {
       tl.to(".page2-right-point1>h3>span", {
         opacity: 0,
         stagger: {
-          amount: 1,
+          amount: 0.5,
         },
       });
     }
@@ -582,12 +583,12 @@ const canvasAnimation = () => {
         opacity: 1,
         scale: 1,
         stagger: {
-          amount: 1,
+          amount: 0.5,
         },
       });
     }
 
-    if (imageSeq.frame === 213) {
+    if (imageSeq.frame === 195) {
       const tl = gsap.timeline();
       tl.to(".page2-line-point2", {
         scale: 0,
@@ -595,7 +596,7 @@ const canvasAnimation = () => {
       tl.to(".page2-right-point2>h3>span", {
         opacity: 0,
         stagger: {
-          amount: 1,
+          amount: 0.5,
         },
       });
     }
@@ -609,7 +610,7 @@ const canvasAnimation = () => {
         opacity: 1,
         scale: 1,
         stagger: {
-          amount: 1,
+          amount: 0.5,
         },
       });
     }
@@ -684,7 +685,7 @@ const canvasAnimation = () => {
     scroller: `body`,
     //   set start end according to preference
     start: `top top`,
-    end: `top -350%`,
+    end: `top -300%`,
   });
 };
 
