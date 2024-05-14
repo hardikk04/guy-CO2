@@ -401,6 +401,31 @@ const page2Animation = () => {
       scrub: 1,
     },
   });
+
+  clutterAnimation(".page2-right-para1>h3");
+  clutterAnimation(".page2-right-end>h3");
+  gsap.from(".page2-right-para1>h3>span,.page2-right-end>h3>span", {
+    opacity: 0,
+    scale: 0,
+    stagger: { amount: 1 },
+    scrollTrigger: {
+      scroller: "body",
+      trigger: ".page2",
+      start: "top 0%",
+      end: "top -30%",
+      scrub: 1,
+    },
+  });
+  gsap.from(".page2-line", {
+    scale: 0,
+    scrollTrigger: {
+      scroller: "body",
+      trigger: ".page2",
+      start: "top 0%",
+      end: "top -30%",
+      scrub: 1,
+    },
+  });
 };
 page2Animation();
 
@@ -472,3 +497,195 @@ const yearsAnimation = () => {
   });
 };
 yearsAnimation();
+
+const canvasAnimation = () => {
+  const canvas = document.querySelector(".page2 canvas");
+  const context = canvas.getContext("2d");
+
+  const page2Right = document
+    .querySelector(".page2-right")
+    .getBoundingClientRect();
+
+  canvas.width = page2Right.width + 350;
+  canvas.height = page2Right.height + 100;
+
+  window.addEventListener("resize", function () {
+    canvas.width = page2Right.width + 350;
+    canvas.height = page2Right.height + 100;
+    render();
+  });
+
+  let renderImg = ``;
+  for (let i = 0; i < 320; i++) {
+    renderImg += `temp/frame${i}.png
+    `;
+  }
+
+  function files(index) {
+    var data = renderImg;
+    return data.split("\n")[index];
+  }
+
+  const frameCount = 320;
+
+  const images = [];
+  const imageSeq = {
+    frame: 1,
+  };
+
+  for (let i = 0; i < frameCount; i++) {
+    const img = new Image();
+    img.src = files(i);
+    images.push(img);
+  }
+
+  gsap.to(imageSeq, {
+    frame: frameCount - 1,
+    snap: "frame",
+    ease: `none`,
+    scrollTrigger: {
+      scrub: 0.15,
+      trigger: `.page2 canvas`,
+      //   set start end according to preference
+      start: `top top`,
+      end: `600% top`,
+      scroller: `body`,
+    },
+    onUpdate: render,
+  });
+
+  images[1].onload = render;
+
+  clutterAnimation(".page2-right-point1>h3");
+  clutterAnimation(".page2-right-point2>h3");
+
+  function render() {
+    scaleImage(images[imageSeq.frame], context);
+    if (imageSeq.frame === 39) {
+      const tl = gsap.timeline();
+      tl.to(".page2-line-point1", {
+        scale: 0,
+      });
+      tl.to(".page2-right-point1>h3>span", {
+        opacity: 0,
+        stagger: {
+          amount: 1,
+        },
+      });
+    }
+    if (imageSeq.frame === 40) {
+      const tl = gsap.timeline();
+      tl.to(".page2-line-point1", {
+        scale: 1,
+      });
+      tl.to(".page2-right-point1>h3>span", {
+        opacity: 1,
+        scale: 1,
+        stagger: {
+          amount: 1,
+        },
+      });
+    }
+
+    if (imageSeq.frame === 213) {
+      const tl = gsap.timeline();
+      tl.to(".page2-line-point2", {
+        scale: 0,
+      });
+      tl.to(".page2-right-point2>h3>span", {
+        opacity: 0,
+        stagger: {
+          amount: 1,
+        },
+      });
+    }
+
+    if (imageSeq.frame === 214) {
+      const tl = gsap.timeline();
+      tl.to(".page2-line-point2", {
+        scale: 1,
+      });
+      tl.to(".page2-right-point2>h3>span", {
+        opacity: 1,
+        scale: 1,
+        stagger: {
+          amount: 1,
+        },
+      });
+    }
+
+    if (flag === "heat") {
+      if (imageSeq.frame < 36) {
+        heatGlobeMaterial.uniforms.uTextures.value = loadedHeatTextures[0];
+      } else if (imageSeq.frame < 72) {
+        heatGlobeMaterial.uniforms.uTextures.value = loadedHeatTextures[1];
+      } else if (imageSeq.frame < 108) {
+        heatGlobeMaterial.uniforms.uTextures.value = loadedHeatTextures[2];
+      } else if (imageSeq.frame < 144) {
+        heatGlobeMaterial.uniforms.uTextures.value = loadedHeatTextures[3];
+      } else if (imageSeq.frame < 180) {
+        heatGlobeMaterial.uniforms.uTextures.value = loadedHeatTextures[4];
+      } else if (imageSeq.frame < 216) {
+        heatGlobeMaterial.uniforms.uTextures.value = loadedHeatTextures[5];
+      } else if (imageSeq.frame < 252) {
+        heatGlobeMaterial.uniforms.uTextures.value = loadedHeatTextures[6];
+      } else if (imageSeq.frame < 288) {
+        heatGlobeMaterial.uniforms.uTextures.value = loadedHeatTextures[7];
+      } else {
+        heatGlobeMaterial.uniforms.uTextures.value = loadedHeatTextures[8];
+      }
+    } else {
+      if (imageSeq.frame < 36) {
+        heatGlobeMaterial.uniforms.uTextures.value = loadedCO2Textures[0];
+      } else if (imageSeq.frame < 72) {
+        heatGlobeMaterial.uniforms.uTextures.value = loadedCO2Textures[1];
+      } else if (imageSeq.frame < 108) {
+        heatGlobeMaterial.uniforms.uTextures.value = loadedCO2Textures[2];
+      } else if (imageSeq.frame < 144) {
+        heatGlobeMaterial.uniforms.uTextures.value = loadedCO2Textures[3];
+      } else if (imageSeq.frame < 180) {
+        heatGlobeMaterial.uniforms.uTextures.value = loadedCO2Textures[4];
+      } else if (imageSeq.frame < 216) {
+        heatGlobeMaterial.uniforms.uTextures.value = loadedCO2Textures[5];
+      } else if (imageSeq.frame < 252) {
+        heatGlobeMaterial.uniforms.uTextures.value = loadedCO2Textures[6];
+      } else if (imageSeq.frame < 288) {
+        heatGlobeMaterial.uniforms.uTextures.value = loadedCO2Textures[7];
+      } else {
+        heatGlobeMaterial.uniforms.uTextures.value = loadedCO2Textures[8];
+      }
+    }
+  }
+
+  function scaleImage(img, ctx) {
+    var canvas = ctx.canvas;
+    var hRatio = canvas.width / img.width;
+    var vRatio = canvas.height / img.height;
+    var ratio = Math.max(hRatio, vRatio);
+    var centerShift_x = (canvas.width - img.width * ratio) / 2;
+    var centerShift_y = (canvas.height - img.height * ratio) / 2;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(
+      img,
+      0,
+      0,
+      img.width,
+      img.height,
+      centerShift_x,
+      centerShift_y,
+      img.width * ratio,
+      img.height * ratio
+    );
+  }
+  ScrollTrigger.create({
+    trigger: ".page2",
+    pin: true,
+    // markers:true,
+    scroller: `body`,
+    //   set start end according to preference
+    start: `top top`,
+    end: `top -350%`,
+  });
+};
+
+canvasAnimation();

@@ -97,6 +97,7 @@ html {
 .main {
   position: relative;
   width: 100%;
+  overflow-x: hidden;
 }
 
 .webgl {
@@ -224,8 +225,8 @@ html {
 
 .page2-left {
   position: relative;
-  z-index: 10;
   width: 43%;
+  height: 100%;
 }
 
 .page2-left > h1 {
@@ -254,4 +255,130 @@ html {
   left: 0;
   bottom: -15%;
   transform-origin: top left;
+}
+
+.page2-right {
+  position: relative;
+  height: 100%;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: regular;
+}
+
+.page2-right canvas {
+  position: relative;
+  height: 80%;
+  width: 60%;
+  object-fit: contain;
+}
+
+.page2 img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.page2-right-para1 {
+  position: absolute;
+  top: 18%;
+  width: 41%;
+  z-index: 9;
+}
+
+.page2-right-para1 > h3 {
+  text-align: center;
+  font-family: regular;
+  font-size: 0.47vw;
+  line-height: 1.5;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.page2-right-end {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5vw;
+  text-transform: uppercase;
+}
+
+.page2-right-point1 {
+  position: absolute;
+  width: 60%;
+  z-index: 9;
+  display: flex;
+  gap: 1vw;
+  left: 52%;
+  top: 34%;
+}
+
+.page2-right-point1 > h3 {
+  font-size: 0.5vw;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1.5;
+}
+
+.page2-right-point1 > h3 > span {
+  opacity: 0;
+  scale: 0;
+}
+
+.page2-line-point1 {
+  position: relative;
+  height: 1.5px;
+  width: 100%;
+  background-color: #ff0000df;
+  transform-origin: left top;
+  scale: 0;
+}
+
+.page2-right-point2 {
+  position: absolute;
+  width: 59%;
+  z-index: 9;
+  display: flex;
+  gap: 1vw;
+  left: 52%;
+  top: 71.5%;
+}
+
+.page2-right-point2 > h3 {
+  font-size: 0.6vw;
+  line-height: 1.5;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.page2-right-point2 > h3 > span {
+  opacity: 0;
+  scale: 0;
+}
+
+.page2-line-point2 {
+  position: relative;
+  height: 1.5px;
+  width: 100%;
+  background-color: #ff0000df;
+  transform-origin: left top;
+  scale: 0;
+}
+
+.page2-line {
+  position: relative;
+  height: 1.5px;
+  width: 80%;
+  background-color: #ff0000df;
+}
+
+.page2-right-end > h3 {
+  font-family: light;
+  font-size: 0.7vw;
+  font-weight: 800;
 }
