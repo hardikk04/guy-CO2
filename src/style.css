@@ -222,6 +222,8 @@ html {
   padding: 4vw 6vw;
   display: flex;
   justify-content: space-between;
+  pointer-events: none;
+  z-index: 10;
 }
 
 .page2-left {
@@ -242,6 +244,7 @@ html {
   margin-top: 4vw;
   gap: 2.5vw;
   width: fit-content;
+  pointer-events: all;
 }
 
 .switch2 h1:nth-child(odd) {
