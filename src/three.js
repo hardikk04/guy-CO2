@@ -165,6 +165,8 @@ const clutterAnimation = (element) => {
 };
 
 const loaderAnimation = () => {
+  document.body.style.overflow = "hidden";
+  document.documentElement.style.overflow = "hidden";
   clutterAnimation(".page0-cont>h1");
   clutterAnimation(".page0-cont>h3");
   const tl = gsap.timeline();
@@ -172,6 +174,7 @@ const loaderAnimation = () => {
     opacity: 0,
     scale: 0,
     y: 50,
+    delay:1,
     stagger: {
       amount: 1,
     },
@@ -182,6 +185,10 @@ const loaderAnimation = () => {
     y: 30,
     stagger: {
       amount: 1,
+    },
+    onComplete: () => {
+      document.body.style.overflow = "initial";
+      document.documentElement.style.overflow = "initial";
     },
   });
 
