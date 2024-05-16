@@ -74,6 +74,8 @@ const heatGlobeMaterial = new THREE.ShaderMaterial({
   fragmentShader: fragmentShader,
   uniforms: {
     uTextures: new THREE.Uniform(loadedHeatTextures[0]),
+    uPrevTextures: new THREE.Uniform(loadedHeatTextures[0]),
+    uAlpha: new THREE.Uniform(1),
   },
 });
 
@@ -210,9 +212,16 @@ page0Animation();
 
 let flag = "heat";
 let globalIndex = 0;
+let prevIndex = 0;
 const switchHeatAndCO2 = () => {
   const heat = document.querySelector(".heat");
   heat.addEventListener("click", () => {
+    gsap.from(heatGlobeMaterial.uniforms.uAlpha, {
+      value: 0,
+      duration: 1,
+    });
+    heatGlobeMaterial.uniforms.uPrevTextures.value =
+      loadedCO2Textures[prevIndex];
     heatGlobeMaterial.uniforms.uTextures.value =
       loadedHeatTextures[globalIndex];
 
@@ -224,6 +233,12 @@ const switchHeatAndCO2 = () => {
   });
   const co2 = document.querySelector(".co2");
   co2.addEventListener("click", () => {
+    gsap.from(heatGlobeMaterial.uniforms.uAlpha, {
+      value: 0,
+      duration: 1,
+    });
+    heatGlobeMaterial.uniforms.uPrevTextures.value =
+      loadedHeatTextures[prevIndex];
     heatGlobeMaterial.uniforms.uTextures.value = loadedCO2Textures[globalIndex];
 
     gsap.to(".blue-bar,.blue-bar2", {
@@ -236,8 +251,14 @@ const switchHeatAndCO2 = () => {
 
   const heat2 = document.querySelector(".heat2");
   heat2.addEventListener("click", () => {
+    gsap.from(heatGlobeMaterial.uniforms.uAlpha, {
+      value: 0,
+      duration: 1,
+    });
+    heatGlobeMaterial.uniforms.uPrevTextures.value =
+      loadedCO2Textures[canvasIndex];
     heatGlobeMaterial.uniforms.uTextures.value =
-      loadedHeatTextures[globalIndex];
+      loadedHeatTextures[canvasIndex];
 
     gsap.to(".blue-bar2,.blue-bar", {
       left: 0,
@@ -247,7 +268,13 @@ const switchHeatAndCO2 = () => {
   });
   const co22 = document.querySelector(".co22");
   co22.addEventListener("click", () => {
-    heatGlobeMaterial.uniforms.uTextures.value = loadedCO2Textures[globalIndex];
+    gsap.from(heatGlobeMaterial.uniforms.uAlpha, {
+      value: 0,
+      duration: 1,
+    });
+    heatGlobeMaterial.uniforms.uPrevTextures.value =
+      loadedHeatTextures[canvasIndex];
+    heatGlobeMaterial.uniforms.uTextures.value = loadedCO2Textures[canvasIndex];
 
     gsap.to(".blue-bar2,.blue-bar", {
       left: "77%",
@@ -258,17 +285,31 @@ const switchHeatAndCO2 = () => {
 };
 switchHeatAndCO2();
 
+
 const yearsAnimation = () => {
   const allYears = document.querySelectorAll(".years > div");
   allYears.forEach((year, index) => {
     year.addEventListener("click", () => {
+      prevIndex = globalIndex;
       gsap.to(".main-circle", {
         left: 12.1 * index + "%",
       });
       if (flag === "heat") {
+        gsap.from(heatGlobeMaterial.uniforms.uAlpha, {
+          value: 0,
+          duration: 1.5,
+        });
+        heatGlobeMaterial.uniforms.uPrevTextures.value =
+          loadedHeatTextures[prevIndex];
         heatGlobeMaterial.uniforms.uTextures.value = loadedHeatTextures[index];
       }
       if (flag === "co2") {
+        gsap.from(heatGlobeMaterial.uniforms.uAlpha, {
+          value: 0,
+          duration: 1.5,
+        });
+        heatGlobeMaterial.uniforms.uPrevTextures.value =
+          loadedCO2Textures[prevIndex];
         heatGlobeMaterial.uniforms.uTextures.value = loadedCO2Textures[index];
       }
       globalIndex = index;
@@ -277,6 +318,7 @@ const yearsAnimation = () => {
 };
 yearsAnimation();
 
+let canvasIndex = 0;
 const canvasAnimation = () => {
   const canvas = document.querySelector(".page2 canvas");
   const context = canvas.getContext("2d");
@@ -327,7 +369,7 @@ const canvasAnimation = () => {
       trigger: `.page2 canvas`,
       //   set start end according to preference
       start: `top top`,
-      end: `top -290%`,
+      end: `top -250%`,
       scroller: `body`,
     },
     onUpdate: render,
@@ -395,42 +437,60 @@ const canvasAnimation = () => {
 
     if (flag === "heat") {
       if (imageSeq.frame < 36) {
+        canvasIndex = 0;
         heatGlobeMaterial.uniforms.uTextures.value = loadedHeatTextures[0];
       } else if (imageSeq.frame < 72) {
+        canvasIndex = 1;
         heatGlobeMaterial.uniforms.uTextures.value = loadedHeatTextures[1];
       } else if (imageSeq.frame < 108) {
+        canvasIndex = 2;
         heatGlobeMaterial.uniforms.uTextures.value = loadedHeatTextures[2];
       } else if (imageSeq.frame < 144) {
+        canvasIndex = 3;
         heatGlobeMaterial.uniforms.uTextures.value = loadedHeatTextures[3];
       } else if (imageSeq.frame < 180) {
+        canvasIndex = 4;
         heatGlobeMaterial.uniforms.uTextures.value = loadedHeatTextures[4];
       } else if (imageSeq.frame < 216) {
+        canvasIndex = 5;
         heatGlobeMaterial.uniforms.uTextures.value = loadedHeatTextures[5];
       } else if (imageSeq.frame < 252) {
+        canvasIndex = 6;
         heatGlobeMaterial.uniforms.uTextures.value = loadedHeatTextures[6];
       } else if (imageSeq.frame < 288) {
+        canvasIndex = 7;
         heatGlobeMaterial.uniforms.uTextures.value = loadedHeatTextures[7];
       } else {
+        canvasIndex = 8;
         heatGlobeMaterial.uniforms.uTextures.value = loadedHeatTextures[8];
       }
     } else {
       if (imageSeq.frame < 36) {
+        canvasIndex = 0;
         heatGlobeMaterial.uniforms.uTextures.value = loadedCO2Textures[0];
       } else if (imageSeq.frame < 72) {
+        canvasIndex = 1;
         heatGlobeMaterial.uniforms.uTextures.value = loadedCO2Textures[1];
       } else if (imageSeq.frame < 108) {
+        canvasIndex = 2;
         heatGlobeMaterial.uniforms.uTextures.value = loadedCO2Textures[2];
       } else if (imageSeq.frame < 144) {
+        canvasIndex = 3;
         heatGlobeMaterial.uniforms.uTextures.value = loadedCO2Textures[3];
       } else if (imageSeq.frame < 180) {
+        canvasIndex = 4;
         heatGlobeMaterial.uniforms.uTextures.value = loadedCO2Textures[4];
       } else if (imageSeq.frame < 216) {
+        canvasIndex = 5;
         heatGlobeMaterial.uniforms.uTextures.value = loadedCO2Textures[5];
       } else if (imageSeq.frame < 252) {
+        canvasIndex = 6;
         heatGlobeMaterial.uniforms.uTextures.value = loadedCO2Textures[6];
       } else if (imageSeq.frame < 288) {
+        canvasIndex = 7;
         heatGlobeMaterial.uniforms.uTextures.value = loadedCO2Textures[7];
       } else {
+        canvasIndex = 8;
         heatGlobeMaterial.uniforms.uTextures.value = loadedCO2Textures[8];
       }
     }
@@ -463,7 +523,7 @@ const canvasAnimation = () => {
     scroller: `body`,
     //   set start end according to preference
     start: `top top`,
-    end: `top -300%`,
+    end: `top -250%`,
   });
 };
 

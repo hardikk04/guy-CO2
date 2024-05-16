@@ -269,6 +269,7 @@ html {
   justify-content: center;
   align-items: center;
   font-family: regular;
+  pointer-events: none;
 }
 
 .page2-right canvas {
@@ -276,6 +277,10 @@ html {
   height: 80%;
   width: 60%;
   object-fit: contain;
+}
+
+.pin-spacer {
+  pointer-events: none;
 }
 
 .page2 img {
