@@ -285,6 +285,123 @@ const switchHeatAndCO2 = () => {
 };
 switchHeatAndCO2();
 
+const pointerBlinkWithCicrcle = () => {
+  const tl = gsap.timeline();
+
+  tl.to(".main-circle", {
+    scale: 0.3,
+    ease: "linear",
+    duration: 0.5,
+  });
+
+  tl.to(
+    ".main-circle",
+    {
+      scale: 1,
+      ease: "linear",
+      duration: 0.5,
+    },
+    "same"
+  );
+  tl.from(
+    ".inner-circle",
+    {
+      scale: 3,
+      opacity: 1,
+      ease: "linear",
+      duration: 0.5,
+    },
+    "same"
+  );
+  tl.to(".main-circle", {
+    scale: 0.3,
+    ease: "linear",
+    duration: 0.5,
+  });
+  tl.to(".main-circle", {
+    scale: 1,
+    ease: "linear",
+    duration: 0.5,
+  });
+  tl.from(
+    ".inner-circle",
+    {
+      scale: 3,
+      opacity: 1,
+      ease: "linear",
+      duration: 0.5,
+    },
+    "same"
+  );
+  tl.to(".main-circle", {
+    scale: 0.3,
+    ease: "linear",
+    duration: 0.5,
+  });
+  tl.to(".main-circle", {
+    scale: 1,
+    ease: "linear",
+    duration: 0.5,
+  });
+  tl.from(
+    ".inner-circle",
+    {
+      scale: 3,
+      opacity: 1,
+      ease: "linear",
+      duration: 0.5,
+    },
+    "same"
+  );
+  tl.to(".inner-circle", {
+    opacity: 0,
+  });
+};
+const pointerBlinkWithoutCicrcle = () => {
+  const tl = gsap.timeline();
+
+  tl.to(".main-circle", {
+    scale: 0.3,
+    ease: "linear",
+    duration: 0.5,
+  });
+
+  tl.to(
+    ".main-circle",
+    {
+      scale: 1,
+      ease: "linear",
+      duration: 0.5,
+    },
+    "same"
+  );
+
+  tl.to(".main-circle", {
+    scale: 0.3,
+    ease: "linear",
+    duration: 0.5,
+  });
+  tl.to(".main-circle", {
+    scale: 1,
+    ease: "linear",
+    duration: 0.5,
+  });
+
+  tl.to(".main-circle", {
+    scale: 0.3,
+    ease: "linear",
+    duration: 0.5,
+  });
+  tl.to(".main-circle", {
+    scale: 1,
+    ease: "linear",
+    duration: 0.5,
+  });
+
+  tl.to(".inner-circle", {
+    opacity: 0,
+  });
+};
 
 const yearsAnimation = () => {
   const allYears = document.querySelectorAll(".years > div");
@@ -293,6 +410,13 @@ const yearsAnimation = () => {
       prevIndex = globalIndex;
       gsap.to(".main-circle", {
         left: 12.1 * index + "%",
+        onComplete: () => {
+          if (index === 0 || index === 8) {
+            pointerBlinkWithoutCicrcle();
+          } else {
+            pointerBlinkWithCicrcle();
+          }
+        },
       });
       if (flag === "heat") {
         gsap.from(heatGlobeMaterial.uniforms.uAlpha, {
