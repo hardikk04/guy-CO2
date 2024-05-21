@@ -37,8 +37,6 @@ const clutterAnimation = (element) => {
 };
 
 const page0Animation = () => {
-  document.body.style.overflow = "hidden";
-  document.documentElement.style.overflow = "hidden";
   clutterAnimation(".page0-cont>h1");
   clutterAnimation(".page0-cont>h3");
   const tl = gsap.timeline();
@@ -58,10 +56,6 @@ const page0Animation = () => {
     y: 30,
     stagger: {
       amount: 1,
-    },
-    onComplete: () => {
-      document.body.style.overflow = "initial";
-      document.documentElement.style.overflow = "initial";
     },
   });
 
@@ -234,7 +228,8 @@ const page2Animation = () => {
   });
 
   tl.to(".webgl", {
-    transform: "translate(-15%,10%)",
+    left: "-48%",
+    top: "15%",
     scrollTrigger: {
       scroller: "body",
       trigger: ".page2",

@@ -354,7 +354,7 @@ html {
 
 .page2-line-point1 {
   position: relative;
-  height: 1.5px;
+  height: 1px;
   width: 100%;
   background-color: #ff0000df;
   transform-origin: left top;
@@ -385,7 +385,7 @@ html {
 
 .page2-line-point2 {
   position: relative;
-  height: 1.5px;
+  height: 1px;
   width: 100%;
   background-color: #ff0000df;
   transform-origin: left top;
@@ -462,5 +462,158 @@ html {
 
   .page2-right-end > h3 {
     font-size: 1vw;
+  }
+}
+
+@media (max-width: 992px) {
+  .webgl {
+    scale: 0.9 !important;
+  }
+
+  .page2 {
+    height: 90vh;
+  }
+
+  .page2-left > h1 {
+    font-size: 2.65vw;
+  }
+
+  .page2-right-point1 {
+    top: 39.5%;
+  }
+
+  .page2-right-point2 {
+    top: 63%;
+  }
+}
+
+@media (max-width: 768px) {
+  .page0 {
+    padding-bottom: 14vw;
+  }
+
+  .page0-cont > h3 {
+    font-size: 1.8vw;
+    width: 36.5%;
+  }
+
+  .webgl {
+    scale: 0.7 !important;
+  }
+  .page2-right-para1 {
+    top: 25%;
+  }
+
+  .page2-right-para1 > h3 {
+    font-size: 1.3vw;
+  }
+
+  .page2-right canvas {
+    left: -8%;
+  }
+  .page2-right-para1 {
+    width: 95%;
+  }
+  .page2-right-point1 > h3 {
+    font-size: 1.4vw;
+  }
+
+  .page2-right-point1 {
+    left: 44%;
+    top: 40.5%;
+  }
+
+  .page2-right-point2 {
+    top: 61%;
+    left: 43%;
+  }
+
+  .page2-right-point2 > h3 {
+    font-size: 1.2vw;
+  }
+
+  .page2-right-end {
+    bottom: 8%;
+  }
+}
+
+@media (max-width: 600px) {
+  .page0 {
+    padding-bottom: 16vw;
+  }
+
+  .page0-cont > h1 {
+    font-size: 3.2vw;
+  }
+  .page0-cont > h3 {
+    font-size: 1.9vw;
+    width: 39%;
+  }
+
+  .webgl {
+    scale: 0.55 !important;
+  }
+
+  .page1-heading > h1 {
+    font-size: 3.6vw;
+  }
+
+  .page1-left {
+    width: 58.7%;
+  }
+
+  .switch h1 {
+    font-size: 2vw;
+  }
+
+  .switch2 h1 {
+    font-size: 3vw;
+  }
+
+  .years h3 {
+    font-size: 1.5vw;
+  }
+
+  .page2-left > h1 {
+    font-size: 3.5vw;
+  }
+
+  .page2-right-para1 > h3 {
+    font-size: 1.6vw;
+  }
+
+  .page2-right canvas {
+    top: 10%;
+  }
+
+  .page2-right-point1 {
+    width: 67%;
+    left: 45%;
+    top: 53%;
+  }
+
+  .page2-right-point2 {
+    top: 69%;
+  }
+
+  .page2-right-para1 {
+    top: 35%;
+  }
+
+  .page2-right-end > h3 {
+    font-size: 1.5vw;
+  }
+
+  .page2-left > h1 {
+    font-size: 3.5vw;
+    width: 200%;
+  }
+
+  .page2-left {
+    margin-top: 16vw;
+  }
+
+  .webgl {
+    transform: translateX(45%);
   }
 }

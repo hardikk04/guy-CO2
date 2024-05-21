@@ -454,8 +454,32 @@ const canvasAnimation = () => {
     .querySelector(".page2-right")
     .getBoundingClientRect();
 
-  canvas.width = page2Right.width + 350;
-  canvas.height = page2Right.height + 100;
+  const mediaQuery = window.matchMedia("(max-width: 768px)");
+
+  // Function to handle changes
+  function handleViewportChange(event) {
+    if (event.matches) {
+      // The viewport is 768px or less
+      console.log("Viewport is 768px or less");
+      // Add your code here to handle the change
+    } else {
+      // The viewport is wider than 768px
+      console.log("Viewport is wider than 768px");
+      // Add your code here to handle the change
+    }
+  }
+
+  // Check the initial state
+  if (mediaQuery.matches) {
+    canvas.width = page2Right.width + 750;
+    canvas.height = page2Right.height + 100;
+  } else {
+    canvas.width = page2Right.width + 350;
+    canvas.height = page2Right.height + 100;
+  }
+
+  // Add event listener
+  mediaQuery.addEventListener("change", handleViewportChange);
 
   window.addEventListener("resize", function () {
     canvas.width = page2Right.width + 350;
