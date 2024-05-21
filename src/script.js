@@ -45,8 +45,9 @@ const page0Animation = () => {
   tl.from(".page0-cont>h1>span", {
     opacity: 0,
     scale: 0,
+    x: 100,
     y: 50,
-    delay:1,
+    delay: 1,
     stagger: {
       amount: 1,
     },
@@ -114,8 +115,6 @@ const page0Animation = () => {
     },
   });
 
- 
-
   tl.from(".interval-loader", {
     opacity: 0,
     scaleX: 0,
@@ -140,10 +139,10 @@ const page0Animation = () => {
 
   tl.from(".years h3 span", {
     opacity: 0,
-    scaleX: 0,
-    y: 40,
+    scaleY: 0,
+    y: 30,
     stagger: {
-      amount: 1.2,
+      amount: 1.5,
     },
     scrollTrigger: {
       scroller: "body",
@@ -183,7 +182,6 @@ const page0Animation = () => {
   });
 };
 page0Animation();
-
 
 const page2Animation = () => {
   clutterAnimation(".page2-left>h1");

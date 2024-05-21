@@ -145,14 +145,18 @@ html {
   background-color: rgb(10, 150, 244);
   border-radius: 50%;
   margin: 0 0.2vw;
+  z-index: 1;
 }
 
 .inner-circle {
   position: relative;
   height: 100%;
   width: 100%;
-  border: .1px solid rgba(10, 150, 244, 0.344);
+  border: 0.1px solid rgba(10, 150, 244, 0.344);
   border-radius: 50%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   opacity: 0;
 }
 
@@ -184,7 +188,7 @@ html {
   display: flex;
   justify-content: space-between;
   font-family: light;
-  gap: 1.35vw;
+  gap: 1.85vw;
   margin-top: 0.4vw;
 }
 
@@ -194,7 +198,7 @@ html {
 }
 
 .years h3 {
-  font-size: 0.9vw;
+  font-size: 0.7vw;
   transform-origin: center bottom;
   rotate: -90deg;
   white-space: nowrap;
@@ -399,4 +403,64 @@ html {
   font-family: light;
   font-size: 0.7vw;
   font-weight: 800;
+}
+
+@media (max-width: 1200px) {
+  .page0-cont > h1 {
+    font-size: 2.8vw;
+  }
+
+  .page0-cont > h3 {
+    font-size: 1.2vw;
+    width: 28.5%;
+  }
+
+  .page1-heading > h1 {
+    font-size: 2.75vw;
+  }
+
+  .page1-left {
+    width: 47.7%;
+  }
+
+  .main-circle {
+    margin: 0 0.3vw;
+  }
+
+  .years h3 {
+    font-size: 1vw;
+  }
+
+  .page2-right {
+    width: 60%;
+  }
+
+  .page2-right-para1 {
+    width: 65%;
+  }
+
+  .page2-right-para1 > h3 {
+    font-size: 0.9vw;
+  }
+
+  .page2-right-point1 {
+    top: 37.5%;
+    padding-right: 0.5vw;
+  }
+
+  .page2-right-point1 > h3 {
+    font-size: 0.9vw;
+  }
+
+  .page2-right-point2 {
+    top: 66.5%;
+  }
+
+  .page2-right-point2 > h3 {
+    font-size: 0.9vw;
+  }
+
+  .page2-right-end > h3 {
+    font-size: 1vw;
+  }
 }

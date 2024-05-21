@@ -306,9 +306,10 @@ const pointerBlinkWithCicrcle = () => {
   tl.from(
     ".inner-circle",
     {
-      scale: 3,
+      height: "300%",
+      width: "300%",
       opacity: 1,
-      ease: "linear",
+      ease: "power3.out",
       duration: 0.5,
     },
     "same"
@@ -326,9 +327,10 @@ const pointerBlinkWithCicrcle = () => {
   tl.from(
     ".inner-circle",
     {
-      scale: 3,
+      height: "300%",
+      width: "300%",
       opacity: 1,
-      ease: "linear",
+      ease: "power3.out",
       duration: 0.5,
     },
     "same"
@@ -346,9 +348,10 @@ const pointerBlinkWithCicrcle = () => {
   tl.from(
     ".inner-circle",
     {
-      scale: 3,
+      height: "300%",
+      width: "300%",
       opacity: 1,
-      ease: "linear",
+      ease: "power3.out",
       duration: 0.5,
     },
     "same"
@@ -497,6 +500,18 @@ const canvasAnimation = () => {
       scroller: `body`,
     },
     onUpdate: render,
+  });
+
+  gsap.to(".page2-line", {
+    width: "20%",
+    scrollTrigger: {
+      scrub: 0.15,
+      trigger: `.page2 canvas`,
+      //   set start end according to preference
+      start: `top top`,
+      end: `top -250%`,
+      scroller: `body`,
+    },
   });
 
   images[1].onload = render;
