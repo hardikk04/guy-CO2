@@ -83,16 +83,23 @@ html {
   height: 35vh;
   width: 50%;
   overflow: hidden;
-  background-color: #fff;
 }
 
-.svg > video {
+.svg video {
   position: absolute;
-  transform: translateY(-10%);
-  height: 100%;
+  top: -45%;
+  left: 0;
   width: 100%;
-  object-fit: cover;
-  scale: 2.5;
+  height: 100%;
+  scale: 3;
+}
+
+.svg .v1 {
+  z-index: 2;
+}
+
+.svg .v2 {
+  z-index: 1;
 }
 
 .main {

@@ -36,6 +36,39 @@ const clutterAnimation = (element) => {
   htmlTag.innerHTML = clutter;
 };
 
+document.body.style.overflow = "hidden";
+document.documentElement.style.overflow = "hidden";
+
+setTimeout(() => {
+  document.body.style.overflow = "initial";
+  document.documentElement.style.overflow = "initial";
+}, 3000);
+
+const videoAnimation = () => {
+  let flag = true;
+
+  window.addEventListener("scroll", function () {
+    let scrollTop = window.scrollY || window.pageYOffset;
+
+    if (scrollTop > 1) {
+      gsap.to(".svg .v1", {
+        opacity: 0,
+      });
+
+      gsap.to(".svg .v2", {
+        opacity: 1,
+      });
+    }
+
+    const video2 = document.querySelector(".v2");
+    if (flag) {
+      flag = false;
+      video2.play();
+    }
+  });
+};
+videoAnimation();
+
 const page0Animation = () => {
   clutterAnimation(".page0-cont>h1");
   clutterAnimation(".page0-cont>h3");
