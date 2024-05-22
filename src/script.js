@@ -8,6 +8,42 @@ gsap.registerPlugin(ScrollTrigger);
 
 // Lenis js
 
+document.addEventListener("DOMContentLoaded", function () {
+  const pages = document.querySelectorAll(".page");
+  let currentPageIndex = 0;
+
+  function scrollToPage(pageIndex, speed) {
+    const targetOffset = pages[pageIndex].offsetTop;
+    const currentOffset = window.pageYOffset;
+    const distance = targetOffset - currentOffset;
+    const increment = Math.sign(distance) * speed;
+
+    let currentPos = currentOffset;
+
+    function scrollStep() {
+      currentPos += increment;
+      window.scrollTo(0, currentPos);
+
+      if (
+        (increment > 0 && currentPos < targetOffset) ||
+        (increment < 0 && currentPos > targetOffset)
+      ) {
+        requestAnimationFrame(scrollStep);
+      }
+    }
+
+    scrollStep();
+  }
+
+  window.addEventListener("wheel", function (event) {
+    const deltaY = event.deltaY;
+    if (deltaY > 0 && currentPageIndex < pages.length - 1) {
+      currentPageIndex++;
+      scrollToPage(currentPageIndex, 3); // Adjust speed here (20 is an example)
+    }
+  });
+});
+
 const lenisJs = () => {
   const lenis = new Lenis();
 
@@ -21,7 +57,7 @@ const lenisJs = () => {
 
   gsap.ticker.lagSmoothing(0);
 };
-lenisJs();
+// lenisJs();
 
 const clutterAnimation = (element) => {
   const htmlTag = document.querySelector(element);
@@ -42,10 +78,23 @@ document.documentElement.style.overflow = "hidden";
 setTimeout(() => {
   document.body.style.overflow = "initial";
   document.documentElement.style.overflow = "initial";
-}, 3000);
+}, 5000);
 
 const videoAnimation = () => {
   let flag = true;
+
+  const video = document.querySelector(".v1");
+  const video2 = document.querySelector(".v2");
+  video.playbackRate = 2.0;
+  video2.playbackRate = 3.0;
+  video.addEventListener("ended", () => {
+    gsap.to(".svg .v1", {
+      opacity: 0,
+    });
+    gsap.to(".svg .v3", {
+      opacity: 1,
+    });
+  });
 
   window.addEventListener("scroll", function () {
     let scrollTop = window.scrollY || window.pageYOffset;
@@ -57,6 +106,9 @@ const videoAnimation = () => {
 
       gsap.to(".svg .v2", {
         opacity: 1,
+      });
+      gsap.to(".svg .v3", {
+        opacity: 0,
       });
     }
 

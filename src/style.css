@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -8,7 +9,7 @@ body,
 html {
   width: 100%;
   height: 100%;
-  overflow: initial;
+  overflow: visible;
 }
 
 /* Fonts */
@@ -50,8 +51,14 @@ html {
   background-color: transparent;
   z-index: 99;
   color: #000;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: end;
+  -ms-flex-align: end;
   align-items: end;
   padding-bottom: 4vw;
   pointer-events: none;
@@ -59,8 +66,15 @@ html {
 
 .page0-cont {
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
 }
 
@@ -95,11 +109,15 @@ html {
 }
 
 .svg .v1 {
-  z-index: 2;
+  opacity: 1;
 }
 
 .svg .v2 {
-  z-index: 1;
+  opacity: 0;
+}
+
+.svg .v3 {
+  opacity: 0;
 }
 
 .main {
@@ -112,6 +130,8 @@ html {
   position: fixed;
   top: 0;
   left: 0;
+  -webkit-transform: translateX(15%);
+  -ms-transform: translateX(15%);
   transform: translateX(15%);
   width: 100%;
   height: 100%;
@@ -129,8 +149,15 @@ html {
   height: 100%;
   width: 42%;
   padding: 0vw 6vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
   z-index: 10;
 }
@@ -163,14 +190,22 @@ html {
   border-radius: 50%;
   left: 50%;
   top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   opacity: 0;
 }
 
 .interval-loader {
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-transform-origin: top left;
+  -ms-transform-origin: top left;
   transform-origin: top left;
 }
 
@@ -192,7 +227,11 @@ html {
 
 .years {
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
   font-family: light;
   gap: 1.85vw;
@@ -206,6 +245,8 @@ html {
 
 .years h3 {
   font-size: 0.7vw;
+  -webkit-transform-origin: center bottom;
+  -ms-transform-origin: center bottom;
   transform-origin: center bottom;
   rotate: -90deg;
   white-space: nowrap;
@@ -213,11 +254,15 @@ html {
 
 .switch {
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   font-family: light;
   margin-top: 4vw;
   gap: 2.5vw;
   white-space: nowrap;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
 }
 
@@ -232,6 +277,8 @@ html {
   background-color: rgb(10, 150, 244);
   left: 0;
   bottom: -15%;
+  -webkit-transform-origin: top left;
+  -ms-transform-origin: top left;
   transform-origin: top left;
 }
 
@@ -240,7 +287,11 @@ html {
   height: 100vh;
   width: 100%;
   padding: 4vw 6vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
   pointer-events: none;
   z-index: 10;
@@ -259,10 +310,14 @@ html {
 
 .switch2 {
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   font-family: light;
   margin-top: 4vw;
   gap: 2.5vw;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
   pointer-events: all;
 }
@@ -278,6 +333,8 @@ html {
   background-color: rgb(10, 150, 244);
   left: 0;
   bottom: -15%;
+  -webkit-transform-origin: top left;
+  -ms-transform-origin: top left;
   transform-origin: top left;
 }
 
@@ -285,8 +342,14 @@ html {
   position: relative;
   height: 100%;
   width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   font-family: regular;
   pointer-events: none;
@@ -296,6 +359,7 @@ html {
   position: relative;
   height: 80%;
   width: 60%;
+  -o-object-fit: contain;
   object-fit: contain;
 }
 
@@ -306,6 +370,7 @@ html {
 .page2 img {
   height: 100%;
   width: 100%;
+  -o-object-fit: cover;
   object-fit: cover;
 }
 
@@ -329,9 +394,18 @@ html {
   position: absolute;
   bottom: 0;
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
   gap: 0.5vw;
   text-transform: uppercase;
@@ -341,6 +415,8 @@ html {
   position: absolute;
   width: 60%;
   z-index: 9;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   gap: 1vw;
   left: 52%;
@@ -364,6 +440,8 @@ html {
   height: 1px;
   width: 100%;
   background-color: #ff0000df;
+  -webkit-transform-origin: left top;
+  -ms-transform-origin: left top;
   transform-origin: left top;
   scale: 0;
 }
@@ -372,6 +450,8 @@ html {
   position: absolute;
   width: 59%;
   z-index: 9;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   gap: 1vw;
   left: 52%;
@@ -395,6 +475,8 @@ html {
   height: 1px;
   width: 100%;
   background-color: #ff0000df;
+  -webkit-transform-origin: left top;
+  -ms-transform-origin: left top;
   transform-origin: left top;
   scale: 0;
 }
@@ -621,6 +703,8 @@ html {
   }
 
   .webgl {
+    -webkit-transform: translateX(45%);
+    -ms-transform: translateX(45%);
     transform: translateX(45%);
   }
 }
