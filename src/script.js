@@ -7,42 +7,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 // Lenis js
-
-document.addEventListener("DOMContentLoaded", function () {
-  const pages = document.querySelectorAll(".page");
-  let currentPageIndex = 0;
-
-  function scrollToPage(pageIndex, speed) {
-    const targetOffset = pages[pageIndex].offsetTop;
-    const currentOffset = window.pageYOffset;
-    const distance = targetOffset - currentOffset;
-    const increment = Math.sign(distance) * speed;
-
-    let currentPos = currentOffset;
-
-    function scrollStep() {
-      currentPos += increment;
-      window.scrollTo(0, currentPos);
-
-      if (
-        (increment > 0 && currentPos < targetOffset) ||
-        (increment < 0 && currentPos > targetOffset)
-      ) {
-        requestAnimationFrame(scrollStep);
-      }
-    }
-
-    scrollStep();
-  }
-
-  window.addEventListener("wheel", function (event) {
-    const deltaY = event.deltaY;
-    if (deltaY > 0 && currentPageIndex < pages.length - 1) {
-      currentPageIndex++;
-      scrollToPage(currentPageIndex, 3); // Adjust speed here (20 is an example)
-    }
-  });
-});
+window.onbeforeunload = function () {
+  window.scrollTo(0, 0);
+};
 
 const lenisJs = () => {
   const lenis = new Lenis();
@@ -57,7 +24,7 @@ const lenisJs = () => {
 
   gsap.ticker.lagSmoothing(0);
 };
-// lenisJs();
+lenisJs();
 
 const clutterAnimation = (element) => {
   const htmlTag = document.querySelector(element);
@@ -85,7 +52,7 @@ const videoAnimation = () => {
 
   const video = document.querySelector(".v1");
   const video2 = document.querySelector(".v2");
-  video.playbackRate = 2.0;
+  // video.playbackRate = 2.0;
   video2.playbackRate = 3.0;
   video.addEventListener("ended", () => {
     gsap.to(".svg .v1", {
@@ -144,6 +111,10 @@ const page0Animation = () => {
     },
   });
 
+  tl.from(".scroll-down>h3,.scroll-down>i", {
+    opacity: 0,
+  });
+
   tl.to(".page0-cont>h1>span", {
     opacity: 0,
     scale: 0,
@@ -172,6 +143,19 @@ const page0Animation = () => {
       start: "top 0%",
       end: "top -50%",
       scrub: 1,
+    },
+  });
+
+  gsap.to(".scroll-down", {
+    opacity: 0,
+    stagger: 0.1,
+    scrollTrigger: {
+      scroller: "body",
+      trigger: ".page0",
+      start: "top 0%",
+      end: "top -10%",
+      scrub: 1,
+      // markers: true,
     },
   });
 
@@ -259,8 +243,53 @@ const page0Animation = () => {
       scrub: 1,
     },
   });
+
+  const t2 = gsap.timeline({
+    scrollTrigger: {
+      scroller: "body",
+      trigger: ".page2",
+      start: "top 100%",
+      end: "top 50%",
+      // markers: true,
+      scrub: 1,
+    },
+  });
+  t2.to(".page1-heading>h1>span", {
+    opacity: 0,
+    scale: 0,
+    stagger: {
+      amount: -1,
+    },
+  });
+
+  t2.to(".interval-loader", {
+    opacity: 0,
+    scaleX: 0,
+  });
+
+  t2.to(".years h3 span", {
+    opacity: 0,
+    scaleY: 0,
+    y: 30,
+    stagger: {
+      amount: -1.5,
+    },
+  });
+
+  t2.to(".switch>h1>span,.switch>h1:nth-child(2)", {
+    opacity: 0,
+    y: 30,
+    stagger: {
+      amount: -0.5,
+    },
+  });
+  t2.to(".blue-bar", {
+    transform: "scaleX(0)",
+  });
 };
 page0Animation();
+
+// Function to save the current scroll position
 
 const page2Animation = () => {
   clutterAnimation(".page2-left>h1");
@@ -275,8 +304,8 @@ const page2Animation = () => {
     scrollTrigger: {
       scroller: "body",
       trigger: ".page2",
-      start: "top 70%",
-      end: "top 40%",
+      start: "top 30%",
+      end: "top 0%",
       scrub: 1,
       // markers: true,
     },
@@ -294,8 +323,8 @@ const page2Animation = () => {
     scrollTrigger: {
       scroller: "body",
       trigger: ".page2",
-      start: "top 50%",
-      end: "top 30%",
+      start: "top 30%",
+      end: "top 0%",
       scrub: 1,
       // markers: true,
     },
@@ -313,8 +342,8 @@ const page2Animation = () => {
   });
 
   tl.to(".webgl", {
-    left: "-48%",
-    top: "15%",
+    left: "-35%",
+    top: "3%",
     scrollTrigger: {
       scroller: "body",
       trigger: ".page2",

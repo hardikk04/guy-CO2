@@ -12,6 +12,16 @@ html {
   overflow: visible;
 }
 
+.co2 > span:nth-child(3) {
+  font-size: 0.8vw;
+  padding-left: 0.1vw;
+}
+
+.co22 > span:nth-child(3) {
+  font-size: 0.8vw;
+  padding-left: 0.1vw;
+}
+
 /* Fonts */
 @font-face {
   font-family: black;
@@ -60,7 +70,7 @@ html {
   -webkit-box-align: end;
   -ms-flex-align: end;
   align-items: end;
-  padding-bottom: 4vw;
+  padding-bottom: 2vw;
   pointer-events: none;
 }
 
@@ -118,6 +128,33 @@ html {
 
 .svg .v3 {
   opacity: 0;
+}
+
+.scroll-down {
+  font-family: light;
+  display: flex;
+  align-items: center;
+  gap: 0.5vw;
+  margin-top: 4vw;
+}
+
+.scroll-down > h3 {
+  font-size: 0.8vw;
+}
+
+.scroll-down > i {
+  position: relative;
+  font-size: 1.1vw;
+  animation: upDown 1s infinite alternate;
+}
+
+@keyframes upDown {
+  0% {
+    transform: translateY(15);
+  }
+  100% {
+    transform: translateY(-5px);
+  }
 }
 
 .main {

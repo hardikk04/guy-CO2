@@ -68,7 +68,7 @@ const loadedCO2Textures = CO2Textures.map((texture) => {
 /**
  * heatGlobe
  */
-const heatGlobeGeometry = new THREE.SphereGeometry(2.2);
+const heatGlobeGeometry = new THREE.IcosahedronGeometry(1.6,32);
 const heatGlobeMaterial = new THREE.ShaderMaterial({
   vertexShader: vertexShader,
   fragmentShader: fragmentShader,
@@ -80,7 +80,7 @@ const heatGlobeMaterial = new THREE.ShaderMaterial({
 });
 
 const heatGlobe = new THREE.Mesh(heatGlobeGeometry, heatGlobeMaterial);
-heatGlobe.scale.set(0.9, 0.9, 0.9);
+// heatGlobe.scale.set(0.9, 0.9, 0.9);
 heatGlobeGroup.add(heatGlobe);
 
 /**
@@ -138,6 +138,7 @@ controls.maxPolarAngle = 0.4 * Math.PI;
  */
 let time = Date.now();
 
+const clock = new THREE.Clock();
 /**
  * Tick
  */
@@ -146,6 +147,10 @@ const tick = () => {
   const currentTime = Date.now();
   const deltaTime = currentTime - time;
   time = currentTime;
+
+  const getElaspedTime = clock.getElapsedTime();
+
+  heatGlobe.rotation.y = getElaspedTime * 0.2;
 
   renderer.render(scene, camera);
   controls.update();
@@ -170,23 +175,25 @@ const page0Animation = () => {
   const tl = gsap.timeline();
 
   tl.from(heatGlobe.position, {
-    y: -5,
-    x: -4,
+    x: -2,
+    duration: 1,
     scrollTrigger: {
       scroller: "body",
       trigger: ".page1",
-      start: "top 70%",
-      end: "top 20%",
-      scrub: 1,
+      start: "top 20%",
+      end: "top 0%",
+      scrub: 0.1,
+      // markers:true,
     },
   });
 
   tl.from(heatGlobeGroup.rotation, {
     y: -Math.PI,
+    duration: 1,
     scrollTrigger: {
       scroller: "body",
       trigger: ".page1",
-      start: "top 70%",
+      start: "top 20%",
       end: "top 0%",
       scrub: 1,
     },
@@ -196,15 +203,13 @@ const page0Animation = () => {
     x: 0,
     y: 0,
     z: 0,
+    duration: 1,
     scrollTrigger: {
       scroller: "body",
       trigger: ".page1",
-      start: "top 70%",
-      end: "top 20%",
+      start: "top 20%",
+      end: "top 0%",
       scrub: 1,
-    },
-    onComplete: () => {
-      controls.autoRotate = true;
     },
   });
 };
@@ -543,59 +548,76 @@ const canvasAnimation = () => {
   clutterAnimation(".page2-right-point1>h3");
   clutterAnimation(".page2-right-point2>h3");
 
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      scrub: 0.15,
+      trigger: `.page2 canvas`,
+      //   set start end according to preference
+      start: `top -30%`,
+      end: `top -50%`,
+      scroller: `body`,
+    },
+  });
+  tl.to(".page2-line-point1", {
+    scale: 1,
+  });
+  tl.to(".page2-right-point1>h3>span", {
+    opacity: 1,
+    scale: 1,
+    stagger: {
+      amount: 0.5,
+    },
+  });
+
+  const tl2 = gsap.timeline({
+    scrollTrigger: {
+      scrub: 0.15,
+      trigger: `.page2 canvas`,
+      //   set start end according to preference
+      start: `top -170%`,
+      end: `top -200%`,
+      scroller: `body`,
+    },
+  });
+  tl2.to(".page2-line-point2", {
+    scale: 1,
+  });
+  tl2.to(".page2-right-point2>h3>span", {
+    opacity: 1,
+    scale: 1,
+    stagger: {
+      amount: 0.5,
+    },
+  });
+
   function render() {
     scaleImage(images[imageSeq.frame], context);
-    if (imageSeq.frame === 20) {
-      const tl = gsap.timeline();
-      tl.to(".page2-line-point1", {
-        scale: 0,
-      });
-      tl.to(".page2-right-point1>h3>span", {
-        opacity: 0,
-        stagger: {
-          amount: 0.5,
-        },
-      });
-    }
-    if (imageSeq.frame === 40) {
-      const tl = gsap.timeline();
-      tl.to(".page2-line-point1", {
-        scale: 1,
-      });
-      tl.to(".page2-right-point1>h3>span", {
-        opacity: 1,
-        scale: 1,
-        stagger: {
-          amount: 0.5,
-        },
-      });
-    }
 
-    if (imageSeq.frame === 195) {
-      const tl = gsap.timeline();
-      tl.to(".page2-line-point2", {
-        scale: 0,
-      });
-      tl.to(".page2-right-point2>h3>span", {
-        opacity: 0,
-        stagger: {
-          amount: 0.5,
-        },
-      });
-    }
+    // if (imageSeq.frame === 195) {
+    //   const tl = gsap.timeline();
+    //   tl.to(".page2-line-point2", {
+    //     scale: 0,
+    //   });
+    //   tl.to(".page2-right-point2>h3>span", {
+    //     opacity: 0,
+    //     stagger: {
+    //       amount: 0.5,
+    //     },
+    //   });
+    // }
 
     if (imageSeq.frame === 214) {
-      const tl = gsap.timeline();
-      tl.to(".page2-line-point2", {
-        scale: 1,
-      });
-      tl.to(".page2-right-point2>h3>span", {
-        opacity: 1,
-        scale: 1,
-        stagger: {
-          amount: 0.5,
-        },
-      });
+      // const tl = gsap.timeline();
+      // tl.to(".page2-line-point2", {
+      //   scale: 1,
+      // });
+      // tl.to(".page2-right-point2>h3>span", {
+      //   opacity: 1,
+      //   scale: 1,
+      //   stagger: {
+      //     amount: 0.5,
+      //   },
+      // });
     }
 
     if (flag === "heat") {
